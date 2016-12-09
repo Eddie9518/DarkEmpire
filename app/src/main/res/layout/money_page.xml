@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg">
+    <ImageView
+        android:id="@+id/m_antaya"
+        android:src="@drawable/money_antaya"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="15dp" />
+    <ImageView
+        android:src="@drawable/money_sinar"
+        android:id="@+id/m_sinar"
+        android:layout_below="@id/m_antaya"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="15dp" />
+    <Button
+        android:id="@+id/money_map"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="搜尋金幣"
+        android:layout_gravity="center_horizontal"
+        android:onClick="moneyclick"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="118dp"
+        android:background="@drawable/selector_edit"
+        android:textColor="#FFFFFF"/>
+
+    <TextView
+        android:layout_toRightOf="@id/m_antaya"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:id="@+id/rune1"
+        android:textSize="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="25dp"
+        android:clickable="true"
+        android:onClick="moneyclick"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:id="@+id/rune2"
+        android:layout_toRightOf="@id/m_sinar"
+        android:layout_below="@id/m_antaya"
+        android:layout_toEndOf="@id/m_sinar"
+        android:textSize="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="15dp"
+        android:clickable="true"
+        android:onClick="moneyclick"/>
+</RelativeLayout>

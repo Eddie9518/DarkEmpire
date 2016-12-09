@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/help_txt"
+        />
+    <EditText
+        android:id="@+id/txt_message"
+        android:text="@string/txt_message_hint"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/http_get_btn"
+            android:text="@string/http_get"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/http_post_btn"
+            android:text="@string/http_post"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="81dp">
+    <TextView
+        android:id="@+id/get_text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+    </ScrollView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="UserId"
+        android:id="@+id/textView"
+        android:textSize="30dp"
+        android:layout_marginLeft="20dp" />
+
+    <EditText
+        android:id="@+id/enter_user_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name"
+        android:id="@+id/textView2"
+        android:textSize="30dp"
+        android:layout_marginLeft="20dp" />
+
+    <EditText
+        android:id="@+id/enter_name"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email"
+        android:id="@+id/textView3"
+        android:layout_marginLeft="20dp"
+        android:textSize="30dp" />
+
+    <EditText
+        android:id="@+id/enter_email"
+        android:layout_width="fill_parent"
+        android:layout_height="54dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/textView4" />
+
+</LinearLayout>

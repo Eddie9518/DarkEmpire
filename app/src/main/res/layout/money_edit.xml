@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="請輸入您要丟棄的金幣數"
+        android:id="@+id/textView9"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/show_money"
+        android:layout_marginTop="5dp"
+        android:textSize="25dp"
+        android:layout_gravity="center_horizontal" />
+    <EditText
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/money_throw"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+        <Button
+            android:id="@+id/m_btnOK"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:text="確定"
+            android:clickable="true"/>
+        <Button
+            android:id="@+id/m_btnCancel"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:text="取消"
+            />
+
+
+    </LinearLayout>
+</LinearLayout>

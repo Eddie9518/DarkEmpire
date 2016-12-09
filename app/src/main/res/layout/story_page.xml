@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    android:weightSum="1">
+    <ImageView
+        android:id="@+id/sinai"
+        android:src="@drawable/sinai"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:clickable="true"
+        android:onClick="to_menu"
+        />
+    <ImageView
+        android:id="@+id/antaya"
+        android:src="@drawable/antaya"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_toRightOf="@+id/sinai"
+        android:scaleType="centerCrop"
+        android:layout_marginRight="20dp"
+        android:clickable="true"
+        android:onClick="to_menu"/>
+
+
+
+
+
+</RelativeLayout>
