@@ -1,8 +1,8 @@
 package net.macdidi.project111;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTabHost;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -15,9 +15,10 @@ import java.util.ArrayList;
 /**
  * Created by Eddie84 on 2016/11/1.
  */
-public class Badge_Activity extends FragmentActivity {
+public class Badge_Activity extends AppCompatActivity {
 
     private String myurl = "http://140.119.163.40:8080/Spring08/app/badge";
+    private String n_myurl = "http://140.119.163.40:8080/DarkEmpire/app/ver1.0/badgeType";
     private String result;
     private String arr_result;
     private String  clsic;

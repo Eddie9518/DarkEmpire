@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 
 /**
@@ -20,45 +19,6 @@ public class Menu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu);
-//        try
-//        {
-//            File mSDFile = null;
-//
-//            //檢查有沒有SD卡裝置
-//            if(Environment.getExternalStorageState().equals( Environment.MEDIA_REMOVED))
-//            {
-//                return ;
-//            }
-//            else
-//            {
-//                //取得SD卡儲存路徑
-//                mSDFile = Environment.getExternalStorageDirectory();
-//            }
-//
-//            //建立文件檔儲存路徑
-//            File mFile = new File(mSDFile.getAbsolutePath()+ App_Dir);
-//
-//            //若沒有檔案儲存路徑時則建立此檔案路徑
-//            if(!mFile.exists())
-//            {
-//                mFile.mkdirs();
-//                Log.d("Test",""+Login_Activity.userid);
-//            }
-//
-//            //取得mEdit文字並儲存寫入至SD卡文件裡
-//            Log.d("NONONONONO","123");
-//            FileWriter mFileWriter = new FileWriter( mFile+"/User.txt",false);
-//            BufferedWriter bw = new BufferedWriter(mFileWriter);
-//            Log.d("why","123");
-//            bw.write(""+Login_Activity.userid);
-//            Log.d("whyyy","456");
-//            bw.close();
-//            Log.d("Testtt",""+Login_Activity.userid);
-//        }
-//        catch (Exception e)
-//        {
-//            Log.d("yoyoyo","FAFFAFAFAILED");
-//        }
         mediaPlayer01 = MediaPlayer.create(this, R.raw.m002);
         mediaPlayer01.start();
     }
@@ -80,26 +40,23 @@ public class Menu extends AppCompatActivity {
         Intent intent = new Intent();
         switch (id) {
             case R.id.gain_money_button:
-                Log.d("goin","888");
-
                 intent.setClass(this,Rune_Activity.class);
                 startActivity(intent);
                 //this.finish();
                 break;
             case R.id.badge_achievement_button:
-                Log.d("gobadge","777");
                 intent.setClass(this,Badge_Activity.class);
                 startActivity(intent);
                 //this.finish();
                 break;
             case R.id.start_game_button:
-                Log.d("hellow","878787");
                 intent.setClass(this,Game_Activity.class);
                 startActivity(intent);
                 //this.finish();
                 break;
             case R.id.inter_communication_button:
-                Log.d("jlsjdlf","12323");
+                intent.setClass(this,Chatroom_Activity.class);
+                startActivity(intent);
                 break;
         }
     }
@@ -112,6 +69,12 @@ public class Menu extends AppCompatActivity {
         intent.setClass(this,MainActivity.class);
         startActivity(intent);
         this.finish();
+
+    }
+    public void settings2(View view){
+        Intent intent = new Intent();
+        intent.setClass(this,Setting_Activity.class);
+        startActivity(intent);
 
     }
 }

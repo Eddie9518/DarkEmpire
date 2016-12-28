@@ -13,10 +13,9 @@
         android:layout_height="350dp"
         android:layout_gravity="center"
         android:layout_weight="0.59"
-        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:id="@+id/imageView" />
+        android:id="@+id/imageView"
+        android:layout_alignParentTop="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -28,14 +27,14 @@
         android:layout_alignStart="@+id/imageView"
         android:layout_marginTop="78dp"
         android:layout_marginLeft="50dp"
-        android:textSize="25dp" />
+        android:textSize="20dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="玩家信箱 : "
         android:id="@+id/title_mail"
-        android:textSize="25dp"
+        android:textSize="20dp"
         android:layout_below="@+id/title_name"
         android:layout_alignLeft="@+id/title_name"
         android:layout_alignStart="@+id/title_name" />
@@ -50,7 +49,7 @@
         android:layout_alignStart="@+id/imageView"
         android:layout_below="@+id/personal_email"
         android:layout_marginLeft="50dp"
-        android:textSize="25dp"
+        android:textSize="20dp"
         android:layout_alignParentBottom="false" />
 
     <TextView
@@ -60,7 +59,7 @@
         android:layout_above="@+id/title_mail"
         android:layout_toRightOf="@+id/title_name"
         android:layout_toEndOf="@+id/title_name"
-        android:textSize="25dp"/>
+        android:textSize="20dp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -81,16 +80,16 @@
         android:layout_centerHorizontal="true"
         android:layout_alignStart="@id/title_mana"
         android:layout_alignLeft="@id/title_mana"
-        android:textSize="25dp"/>
+        android:textSize="20dp"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="遊戲經驗 : "
-        android:id="@+id/title_exp"
+        android:text="累積巡邏次數 :"
+        android:id="@+id/personal_patrol"
         android:layout_below="@id/title_lev"
         android:layout_alignStart="@id/title_lev"
         android:layout_alignLeft="@id/title_lev"
-        android:textSize="25dp"/>
+        android:textSize="20dp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -99,23 +98,15 @@
         android:layout_above="@+id/title_lev"
         android:layout_toRightOf="@+id/title_mana"
         android:layout_toEndOf="@+id/title_mana"
-        android:textSize="25dp"/>
+        android:textSize="20dp"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/personal_lev"
-        android:layout_above="@id/title_exp"
+        android:layout_above="@id/personal_patrol"
         android:layout_toRightOf="@id/title_lev"
         android:layout_toEndOf="@id/title_lev"
-     android:textSize="25dp"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/personal_exp"
-        android:layout_below="@id/personal_lev"
-        android:layout_toRightOf="@id/title_exp"
-        android:layout_toEndOf="@id/title_exp"
-        android:textSize="25dp" />
+        android:textSize="20dp"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -123,9 +114,21 @@
         android:text="更新資料"
         android:textColor="#FFFFFF"
         android:id="@+id/edit_person_inf"
+        android:background="@drawable/selector_edit"
         android:layout_below="@+id/imageView"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/selector_edit"/>
+        android:layout_marginTop="47dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="累積淨化次數 :"
+        android:id="@+id/personal_pure"
+        android:layout_below="@id/personal_patrol"
+        android:layout_alignStart="@id/personal_patrol"
+        android:layout_alignLeft="@id/personal_patrol"
+        android:textSize="20dp"
+  />
     <!--<android.support.v7.widget.Toolbar-->
         <!--android:id="@+id/my_toolbar"-->
         <!--android:layout_width="match_parent"-->

@@ -63,8 +63,8 @@ public class Rune_Activity extends AppCompatActivity {
         json3(get1);
         Rune1 = (TextView) findViewById(R.id.rune1);
         Rune2 = (TextView) findViewById(R.id.rune2);
-        Rune1.setText("" + rune1_count);
-        Rune2.setText("" + rune2_count);
+        Rune1.setText("" + rune1_count+" 個");
+        Rune2.setText("" + rune2_count+" 個");
         mContext = this;
         initLocationManager(mContext);
     }
@@ -312,7 +312,7 @@ public class Rune_Activity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                     rune1_count = rune1_count - Integer.valueOf(amount);
-                    Rune1.setText("" + rune1_count);
+                    Rune1.setText("" + rune1_count+" 個");
                     dialog.cancel();
 
                 }
@@ -325,7 +325,7 @@ public class Rune_Activity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                     rune2_count=rune2_count-Integer.valueOf(amount);
-                    Rune2.setText(""+rune2_count);
+                    Rune2.setText(""+rune2_count +" 個");
                     dialog.cancel();
 
 

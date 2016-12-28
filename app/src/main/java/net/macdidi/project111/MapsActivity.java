@@ -81,21 +81,6 @@ public class MapsActivity extends FragmentActivity
         if (!googleApiClient.isConnected()) {
             googleApiClient.connect();
         }
-//        if(user_place!=null) {
-//            try {
-//                gett = Http_Get.httpget(myurl + user_place.longitude + "/" + user_place.latitude + "/");
-//                Log.d("TT",""+user_place.longitude+"&&"+user_place.latitude);
-//                Log.d("TT",""+gett);
-//            } catch (ProtocolException e) {
-//                Log.d("tetetet","nonono");
-//                e.printStackTrace();
-//            }
-//        }
-//        timer.schedule(new MyTimerTask(), 1000, 1000);
-////        json3(gett);
-//        while(gett!=null){
-//            json3(gett);
-//        }
     }
 
     // 建立Google API用戶端物件

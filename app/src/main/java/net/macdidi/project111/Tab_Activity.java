@@ -12,7 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -83,10 +82,10 @@ public class Tab_Activity extends Fragment {
 //            }
 //        });
         ListView lv = (ListView)getActivity().findViewById(R.id.badge_content);
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
-                getActivity(),
-                android.R.layout.simple_list_item_1,
-                aa );
+//        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
+//                getActivity(),
+//                android.R.layout.simple_list_item_1,
+//                aa );
         myadapter adapter = new myadapter(aa,getActivity());
         lv.setAdapter(adapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {

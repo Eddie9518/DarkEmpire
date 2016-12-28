@@ -78,7 +78,8 @@
         android:layout_marginTop="15dp"
         android:text="站內通訊"
         android:textColor="#FFFFFF"
-        android:textSize="20dp"/>
+        android:textSize="20dp"
+        android:onClick="clickFunction"/>
     <ImageView
         android:src="@drawable/setting_story"
         android:layout_width="50dp"
@@ -86,6 +87,6 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:clickable="true"
-        android:onClick="settings"/>
+        android:onClick="settings2"/>
 
 </RelativeLayout>

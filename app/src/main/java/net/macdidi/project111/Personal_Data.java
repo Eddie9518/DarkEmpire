@@ -26,17 +26,18 @@ public class Personal_Data extends AppCompatActivity {
     private String Email;
     private String TimeStamp;
     private String myurl ="http://140.119.163.40:8080/DarkEmpire/app/ver1.0/user/";
-
-    private String testing ="http://140.119.163.40:8080/Sample/user/json/16";
+    private String gamingurl = "http://140.119.163.40:8080/DarkEmpire/app/ver1.0/totalRecord/list/";
     private String Level;
     private String Exp;
-    private String Camp;
-    private String Votes;
+    private String Patrol;
+    private String Pure;
     private TextView PersonID;
     private TextView PersonEmail;
     private TextView PersonMana;
     private TextView PersonLev;
     private TextView PersonExp;
+    private TextView Personptrl;
+    private TextView Personpure;
     private String mana;
     private Button Editinf;
     private String a;
@@ -49,14 +50,25 @@ public class Personal_Data extends AppCompatActivity {
         SharedPreferences b = getSharedPreferences("DATA",0);
         a = b.getString("ID","");
         mana = ""+21;
-        Level=""+0;
         Exp = ""+0;
         PersonID = (TextView)findViewById(R.id.personal_id);
         PersonEmail=(TextView)findViewById(R.id.personal_email);
         PersonMana=(TextView)findViewById(R.id.personal_mana);
         PersonLev=(TextView)findViewById(R.id.personal_lev);
-        PersonExp=(TextView)findViewById(R.id.personal_exp);
+        Personptrl = (TextView)findViewById(R.id.personal_patrol);
+        Personpure = (TextView)findViewById(R.id.personal_pure);
         Editinf =(Button)findViewById(R.id.edit_person_inf);
+        try {
+            String game_result = Http_Get.httpget(gamingurl+a);
+            JSONObject j_object = new JSONObject(game_result);
+            Patrol = j_object.getString("count_checkin");
+            Pure = j_object.getString("count_purify");
+
+        } catch (ProtocolException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         try {
             String result2 = Http_Get.httpget(myurl+a);
 //            Log.d("testt",result2);
@@ -65,8 +77,10 @@ public class Personal_Data extends AppCompatActivity {
             PersonEmail.setText(Email);
             PersonMana.setText(mana);
             PersonLev.setText(Level);
-            PersonExp.setText(Exp);
-
+            Patrol = "累積巡邏次數 :"+Patrol;
+            Pure = "累積淨化次數 :"+Pure;
+            Personptrl.setText(Patrol);
+            Personpure.setText(Pure);
         } catch (ProtocolException e) {
             e.printStackTrace();
         }
@@ -145,8 +159,8 @@ public class Personal_Data extends AppCompatActivity {
                 Email = object2.getString("email");
 //                Level = object2.getString("level");
 //                Exp = object2.getString("exp");
-                Camp = object2.getString("camp");
 //                Votes = object2.getString("votes");
+                Level = object2.getString("level");
         } catch (JSONException e) {
             e.printStackTrace();
         }

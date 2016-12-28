@@ -54,7 +54,8 @@
         <activity android:name=".Story_Activity" />
         <activity android:name=".Rune_Activity"
             android:label="丟棄硬幣"
-            android:parentActivityName=".Menu">
+            android:parentActivityName=".Menu"
+            >
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
             android:value=".Menu"
@@ -68,10 +69,52 @@
             android:value=".Menu"
             />
         </activity>
-        <activity android:name=".Game_Activity" />
-        <activity android:name=".Game_List" />
-        <activity android:name=".Gaming" />
-
+        <activity android:name=".Game_Activity"
+            android:label="政大地圖"
+            android:parentActivityName=".Menu">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Menu"/>
+        </activity>
+        <activity android:name=".Game_List"
+            android:label="地點列表"
+            android:parentActivityName=".Game_Activity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Game_Activity"/>
+        </activity>
+        <activity android:name=".Gaming"
+            android:label="顯示地點"
+            android:parentActivityName=".Game_List">
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".Game_List"/>
+        </activity>
+        <activity android:name=".Setting_Activity"
+            android:label="遊戲設定"
+            android:parentActivityName=".Menu">
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".Menu"
+            />
+        </activity>
+        <activity android:name=".Explanation_Activity"
+            android:label="遊戲說明"
+            android:parentActivityName=".Setting_Activity">
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".Setting_Activity"
+            />
+        </activity>
+        <activity android:name=".Chatroom_Activity"
+            android:label="站內通訊"
+            android:parentActivityName=".Menu"
+            android:windowSoftInputMode="adjustPan">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Menu"
+                />
+        </activity>
         <service
             android:name=".Http_Get"
             android:enabled="true"

@@ -1,13 +1,19 @@
 package net.macdidi.project111;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.CheckBox;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -37,11 +43,12 @@ import java.net.ProtocolException;
 /**
  * Created by Eddie84 on 2016/11/10.
  */
-public class Game_Activity extends FragmentActivity
+public class Game_Activity extends AppCompatActivity
         implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
         LocationListener {
     private int change = 0;
+    private static String testing;
     private GoogleMap mMap;
     public static String pid;
     public static double open_latitude;
@@ -81,6 +88,18 @@ public class Game_Activity extends FragmentActivity
         // 連線到Google API用戶端
         if (!googleApiClient.isConnected()) {
             googleApiClient.connect();
+        }
+        SharedPreferences b = getSharedPreferences("DATA",0);
+        String tt = b.getString("Firsttime","");
+        if(tt.equals("true")) {
+            if (testing != null) {
+                Log.d("hihihi", testing);
+            } else {
+                checkbox();
+            }
+        }
+        else{
+            Log.d("122222",tt);
         }
     }
 
@@ -171,7 +190,6 @@ public class Game_Activity extends FragmentActivity
         MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.position(place)
                 .icon(icon1);
-        Log.d("111","11111");
 
         itemMarker = mMap.addMarker(markerOptions);
         itemMarker.setTitle(title);
@@ -279,12 +297,10 @@ public class Game_Activity extends FragmentActivity
     public void json3(String result) {
         try {
             JSONArray object_arr = new JSONArray(result);
-            Log.d("aaaa",""+object_arr.length());
 //            JSONObject object2 = new JSONObject(result);
             for(int i=0; i<object_arr.length();i++) {
                 String m_id = object_arr.getJSONObject(i).getString("main_id");
                 String p_id = object_arr.getJSONObject(i).getString("place_id");
-                Log.d("asdfdasf",m_id);
                // String name = object_arr.getJSONObject(i).getString("name");
                 if(m_id.equals("0")) {
                     double m_longi = object_arr.getJSONObject(i).getDouble("longitude");
@@ -302,5 +318,22 @@ public class Game_Activity extends FragmentActivity
             Log.d("Not found","QQ");
             e.printStackTrace();
         }
+    }
+    public void checkbox(){
+        LayoutInflater inflater = LayoutInflater.from(Game_Activity.this);
+        View alert_view = inflater.inflate(R.layout.gameactivity_checkbox,null);
+        final AlertDialog.Builder editDialog = new AlertDialog.Builder(Game_Activity.this);
+        editDialog.setTitle("攻塔攻略");
+        editDialog.setView(alert_view);
+        CheckBox aa = (CheckBox)alert_view.findViewById(R.id.checkBox2);
+        final AlertDialog dialog = editDialog.create();
+        editDialog.setPositiveButton("開始探險", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                testing = "unable";
+                dialog.dismiss();
+            }
+        }).show();
+
     }
 }
