@@ -17,9 +17,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.net.ProtocolException;
 import java.util.ArrayList;
 
@@ -30,36 +27,43 @@ public class Tab_Activity extends Fragment {
     private TextView tab_content;
     private String value="";
     private String myurl = "http://140.119.163.40:8080/Spring08/app/badge";
+    private String badge_myurl ="http://140.119.163.40:8080/DarkEmpire/app/ver1.0/badge/list";
+    private String achieve_url = "http://140.119.163.40:8080/DarkEmpire/app/ver1.0/userBadge/";
     private String result;
     private String arr_result;
     private ArrayList <String> aa;
     private ArrayList <String> des;
+    private ArrayList <String> badge_id;
+    private String [] havebadge;
+    private int resID;
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         value = "";
 
         try {
-            result = Http_Get.httpget(myurl);
-            JSONObject first_j = new JSONObject(result);
-//            first_j = new JSONObject(result);
-            arr_result = first_j.getString("badge");
+            arr_result = Http_Get.httpget(badge_myurl);
         } catch (ProtocolException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
             e.printStackTrace();
         }
         Badge_Activity mainActivity = (Badge_Activity) activity;
         aa = mainActivity.json4(arr_result,getTag());
         des = mainActivity.json5(arr_result,getTag());
+        badge_id = mainActivity.json6(arr_result,getTag());
         if(aa.size()>0){
             value =""+ aa.size();
         }
         else {
             value = "trytry123";
         }
-
-
+        achieve_url = achieve_url + mainActivity.getUserid();
+        try {
+            String a =Http_Get.httpget(achieve_url);
+            String b =a.substring(13,a.length()-2);
+            havebadge = b.split(",");
+        } catch (ProtocolException e) {
+            e.printStackTrace();
+        }
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -71,21 +75,7 @@ public class Tab_Activity extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        //TextView txtResult = (TextView) this.getView().findViewById(R.id.textView1);
-        //txtResult.setText(value);
-//        tab_content = (TextView)this.getView().findViewById(R.id.badge_Content);
-//        start();
-//        tab_content.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Log.d("222",""+tab_content.length());
-//            }
-//        });
         ListView lv = (ListView)getActivity().findViewById(R.id.badge_content);
-//        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
-//                getActivity(),
-//                android.R.layout.simple_list_item_1,
-//                aa );
         myadapter adapter = new myadapter(aa,getActivity());
         lv.setAdapter(adapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -95,16 +85,6 @@ public class Tab_Activity extends Fragment {
             }
         });
 
-    }
-    public void start(){
-
-        int count = 0;
-        while (aa.size() > count) {
-            tab_content.append("\n"+aa.get(count).toString());
-
-            count++;
-
-        }
     }
      public class myadapter extends BaseAdapter{
 
@@ -147,6 +127,49 @@ public class Tab_Activity extends Fragment {
                      holder = (Holder) v.getTag();
                  }
                  holder.text.setText(bb.get(i));
+                 holder.image.setImageResource(R.drawable.cleanbadge);
+                 //壓縮圖檔
+//                 if(getTag().equals("校園尋奇")){
+//                     resID = getResources().getIdentifier("badge_campus", "drawable", getActivity().getPackageName());
+//                 }
+//                 else if(getTag().equals("專家")){
+//                     resID = getResources().getIdentifier("badge_expert", "drawable", getActivity().getPackageName());
+//                 }
+//                 else if(getTag().equals("探索")){
+//                     resID = getResources().getIdentifier("badge_search", "drawable", getActivity().getPackageName());
+//                 }
+////                 int resID1 = getResources().getIdentifier("badge_campus", "drawable", getActivity().getPackageName());
+////                 int resID2 = getResources().getIdentifier("badge_expert", "drawable", getActivity().getPackageName());
+////                 int resID3 = getResources().getIdentifier("badge_search", "drawable", getActivity().getPackageName());
+//                 BitmapFactory.Options options = new BitmapFactory.Options();
+//                 options.inSampleSize = 2;
+////                 Bitmap b_campus = BitmapFactory.decodeResource(getResources(), resID1,options);
+////                 Bitmap b_expert = BitmapFactory.decodeResource(getResources(), resID2,options);
+////                 Bitmap b_search = BitmapFactory.decodeResource(getResources(), resID3,options);
+//                 Bitmap result = BitmapFactory.decodeResource(getResources(),resID,options);
+                 for(int k = 0 ; k < havebadge.length; k++){
+                     if(badge_id.get(i).equals(havebadge[k])){
+                         if(getTag().equals("校園尋奇")) {
+                             holder.image.setImageResource(R.drawable.badge_campus);
+//                             holder.image.setImageBitmap(result);
+                             break;
+                         }
+                         else if(getTag().equals("專家")){
+                             holder.image.setImageResource(R.drawable.badge_expert);
+//                             holder.image.setImageBitmap(result);
+                             break;
+                         }
+                         else if(getTag().equals("探索")){
+                             holder.image.setImageResource(R.drawable.badge_search);
+//                             holder.image.setImageBitmap(result);
+                             break;
+                         }
+                         else{
+                             Log.d("123123",getTag());
+                         }
+                     }
+                 }
+
                  return v;
              }
 

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg">
+
+    <ImageView
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:id="@+id/show_img1"
+        />
+    <ImageView
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp"
+        android:id="@+id/show_img2"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        />
+    <ImageView
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp"
+        android:id="@+id/show_img3"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        />
+    <ImageView
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp"
+        android:id="@+id/show_img4"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        />
+    <ImageView
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp"
+        android:id="@+id/show_img5"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        />
+    <ImageView
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp"
+        android:id="@+id/show_img6"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        />
+
+    <ImageView
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp"
+        android:id="@+id/show_img7"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        />
+    <ImageView
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp"
+        android:id="@+id/show_img8"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        />
+    <ImageView
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp"
+        android:id="@+id/show_frame"
+        android:layout_width="300dp"
+        android:layout_height="300dp" />
+    <TextView
+        android:layout_marginTop="15dp"
+        android:layout_below="@id/show_frame"
+        android:textSize="20dp"
+        android:text="請輸入您要奉獻的編號 : "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@id/show_frame"
+        android:layout_alignLeft="@id/show_frame"
+        android:id="@+id/dedicate_title" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/dedicate_spinner"
+        android:layout_toRightOf="@id/dedicate_title"
+        android:layout_toEndOf="@id/dedicate_title"
+        android:layout_below="@id/show_frame"
+        android:layout_marginTop="15dp" />
+
+</RelativeLayout>

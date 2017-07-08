@@ -39,4 +39,27 @@
         android:layout_alignRight="@id/enter_chat"
         android:layout_marginRight="10dp"
       />
+    <TextView
+        android:textSize="15dp"
+        android:textColor="#000000"
+        android:id="@+id/chatamount_check_text"
+        android:text="歷史訊息數量 : "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/enter_chat"
+        android:layout_marginBottom="32dp"
+        android:layout_marginLeft="35dp"
+        android:layout_alignParentLeft="true"/>
+    <EditText
+        android:id="@+id/chatamount"
+        android:text="50"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/chatamount_check_text"
+        android:layout_above="@id/enter_chat"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="30dp"
+        android:inputType="number"
+        android:selectAllOnFocus="true"
+        />
 </RelativeLayout>

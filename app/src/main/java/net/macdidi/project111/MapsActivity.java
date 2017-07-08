@@ -2,12 +2,15 @@ package net.macdidi.project111;
 
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -61,6 +64,10 @@ public class MapsActivity extends FragmentActivity
     private GroundOverlay imageOverlay;
     private GroundOverlay backOverlay;
     private String a;
+    private LatLng nccu;
+    //紀錄api需要的變數
+    private String recordurl ="http://140.119.163.40:8080/DarkEmpire/app/ver1.0/storeAction/";
+    private String action_pick="5";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,17 +77,20 @@ public class MapsActivity extends FragmentActivity
         mapFragment.getMapAsync(this);
         SharedPreferences b = getSharedPreferences("DATA",0);
         a = b.getString("ID","");
-
-
+        //預設四維堂經緯度
+        nccu = new LatLng(24.98635,121.575744);
         // 建立Google API用戶端物件
         configGoogleApiClient();
 
         // 建立Location請求物件
         configLocationRequest();
         // 連線到Google API用戶端
-        if (!googleApiClient.isConnected()) {
-            googleApiClient.connect();
-        }
+//        if(!googleApiClient.isConnected()){
+//            googleApiClient.connect();
+//        }
+
+
+
     }
 
     // 建立Google API用戶端物件
@@ -138,18 +148,15 @@ public class MapsActivity extends FragmentActivity
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         mMap.getUiSettings().setScrollGesturesEnabled(false);
-//        // 讀取記事儲存的座標
-//        Intent intent = getIntent();
-//        double lat = intent.getDoubleExtra("lat", 0.0);
-//        double lng = intent.getDoubleExtra("lng", 0.0);
-//
-//        // 如果記事已經儲存座標
-//        if (lat != 0.0 && lng != 0.0) {
-//            // 建立座標物件
-//            LatLng itemPlace = new LatLng(lat, lng);
-//            moveMap(itemPlace);
-//        }
-        processController();
+        mMap.getUiSettings().setZoomGesturesEnabled(false);
+        mMap.getUiSettings().setRotateGesturesEnabled(false);
+        if(!googleApiClient.isConnected()){
+            googleApiClient.connect();
+            Log.d("i connect again","1111");
+        }
+
+
+
     }
 
     // 移動地圖到參數指定的位置
@@ -210,6 +217,60 @@ public class MapsActivity extends FragmentActivity
         }
         LocationServices.FusedLocationApi.requestLocationUpdates(
                 googleApiClient, locationRequest, MapsActivity.this);
+        Location mLastLocation = LocationServices.FusedLocationApi.getLastLocation(googleApiClient);
+        if(mLastLocation!=null) {
+            Log.d("firstnccu", "" + nccu);
+            m_latitude = 0.0;
+            m_longitude = 0.0;
+            m_latitude = mLastLocation.getLatitude();
+            m_longitude = mLastLocation.getLongitude();
+            if (m_latitude != 0.0 && m_longitude != 0.0) {
+                nccu = new LatLng(m_latitude, m_longitude);
+            }
+        }
+        Log.d("yahifindloca",""+nccu);
+//        processController();
+        moveMap(nccu);
+        //設定底圖位置和範圍
+        LatLngBounds newarkBounds = new LatLngBounds(
+                new LatLng(nccu.latitude-0.002,nccu.longitude-0.002),       // South west corner
+                new LatLng(nccu.latitude+0.002,nccu.longitude+0.002));      // North east corner
+        LatLngBounds bgarkBounds = new LatLngBounds(
+                new LatLng(nccu.latitude-0.005,nccu.longitude-0.005),       // South west corner
+                new LatLng(nccu.latitude+0.005,nccu.longitude+0.005));
+        LatLng latLng = new LatLng(
+                nccu.latitude,nccu.longitude);
+        int resID = getResources().getIdentifier("magic", "drawable", MapsActivity.this.getPackageName());
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inSampleSize = 2;
+        Bitmap frame = BitmapFactory.decodeResource(getResources(), resID, options);
+//        GroundOverlayOptions newarkMap = new GroundOverlayOptions()
+//                .image(BitmapDescriptorFactory.fromResource(R.drawable.magic))
+//                .positionFromBounds(newarkBounds);
+        GroundOverlayOptions newarkMap = new GroundOverlayOptions()
+                .image(BitmapDescriptorFactory.fromBitmap(frame))
+                .positionFromBounds(newarkBounds);
+        GroundOverlayOptions backarkMap = new GroundOverlayOptions()
+                .image(BitmapDescriptorFactory.fromResource(R.drawable.magicback))
+                .positionFromBounds(bgarkBounds);
+        //加入魔法陣底圖
+        backOverlay = mMap.addGroundOverlay(backarkMap);
+        imageOverlay = mMap.addGroundOverlay(newarkMap);
+        //加入addmarker位置
+        if(user_place==null) {
+            user_place = latLng;
+            try {
+                gett = Http_Get.httpget(myurl + user_place.longitude + "/" + user_place.latitude + "/");
+                json3(gett);
+            } catch (ProtocolException e) {
+                e.printStackTrace();
+            }
+
+
+        }
+        //setonclick
+        processController();
+
     }
 
     // ConnectionCallbacks
@@ -243,31 +304,30 @@ public class MapsActivity extends FragmentActivity
 //        }
         currentLocation = location;
 
-
-        LatLngBounds newarkBounds = new LatLngBounds(
-                new LatLng(location.getLatitude()-0.002,location.getLongitude()-0.002),       // South west corner
-                new LatLng(location.getLatitude()+0.002,location.getLongitude()+0.002));      // North east corner
+//
+//        LatLngBounds newarkBounds = new LatLngBounds(
+//                new LatLng(location.getLatitude()-0.002,location.getLongitude()-0.002),       // South west corner
+//                new LatLng(location.getLatitude()+0.002,location.getLongitude()+0.002));      // North east corner
         LatLng latLng = new LatLng(
                 location.getLatitude(), location.getLongitude());
-//        Log.d("12312","22222");
-        GroundOverlayOptions newarkMap = new GroundOverlayOptions()
-                .image(BitmapDescriptorFactory.fromResource(R.drawable.magic))
-                .positionFromBounds(newarkBounds);
-        GroundOverlayOptions backarkMap = new GroundOverlayOptions()
-                .image(BitmapDescriptorFactory.fromResource(R.drawable.magicback))
-                .positionFromBounds(newarkBounds);
-        if (backOverlay == null) {
-            backOverlay = mMap.addGroundOverlay(backarkMap);
-        }
-        else{
+//        GroundOverlayOptions newarkMap = new GroundOverlayOptions()
+//                .image(BitmapDescriptorFactory.fromResource(R.drawable.magic))
+//                .positionFromBounds(newarkBounds);
+//        GroundOverlayOptions backarkMap = new GroundOverlayOptions()
+//                .image(BitmapDescriptorFactory.fromResource(R.drawable.magicback))
+//                .positionFromBounds(newarkBounds);
+//        if (backOverlay == null) {
+//            backOverlay = mMap.addGroundOverlay(backarkMap);
+//        }
+//        else{
             backOverlay.setPosition(latLng);
-        }
-        if(imageOverlay==null) {
-            imageOverlay = mMap.addGroundOverlay(newarkMap);
-        }
-        else {
+//        }
+//        if(imageOverlay==null) {
+//            imageOverlay = mMap.addGroundOverlay(newarkMap);
+//        }
+//        else {
             imageOverlay.setPosition(latLng);
-        }
+//        }
 //        if(oldOverlay!=null){
 //            oldOverlay.remove();
 //        }
@@ -281,20 +341,17 @@ public class MapsActivity extends FragmentActivity
 //        else {
 //            currentMarker.setPosition(latLng);
 //        }
-        if(user_place==null) {
-            user_place = latLng;
-            Log.d("yoyoyyoyo",""+user_place.longitude+"/"+user_place.latitude);
-            try {
-                gett = Http_Get.httpget(myurl + user_place.longitude + "/" + user_place.latitude + "/");
-                Log.d("show get",gett);
-                json3(gett);
-//                Log.d("halo","214");
-            } catch (ProtocolException e) {
-                e.printStackTrace();
-            }
-
-
-        }
+//        if(user_place==null) {
+//            user_place = latLng;
+//            try {
+//                gett = Http_Get.httpget(myurl + user_place.longitude + "/" + user_place.latitude + "/");
+//                json3(gett);
+//            } catch (ProtocolException e) {
+//                e.printStackTrace();
+//            }
+//
+//
+//        }
 //        oldOverlay = mMap.addGroundOverlay(newarkMap);
 //        Log.d("testt",""+user_place.longitude+"&&"+user_place.latitude);
         // 移動地圖到目前的位置
@@ -308,27 +365,6 @@ public class MapsActivity extends FragmentActivity
             @Override
             public boolean onMarkerClick(Marker marker) {
 //                 如果是目前位置標記
-//                if (marker.equals(currentMarker)) {
-//                    AlertDialog.Builder ab = new AlertDialog.Builder(MapsActivity.this);
-//
-//                    ab.setTitle(R.string.title_current_location)
-//                            .setMessage(R.string.message_current_location)
-//                            .setCancelable(true);
-//
-//                    ab.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-//                        @Override
-//                        public void onClick(DialogInterface dialog, int which) {
-//                            Intent result = new Intent();
-//                            result.putExtra("lat", currentLocation.getLatitude());
-//                            result.putExtra("lng", currentLocation.getLongitude());
-//                            setResult(Activity.RESULT_OK, result);
-//                            finish();
-//                        }
-//                    });
-//                    ab.setNegativeButton(android.R.string.cancel, null);
-//
-//                    ab.show();
-//                    if(marker.getTitle().equals("1")){
                 MediaPlayer mediaPlayer01;
                 mediaPlayer01 = MediaPlayer.create(getApplicationContext(), R.raw.m009);
                 mediaPlayer01.start();
@@ -337,6 +373,12 @@ public class MapsActivity extends FragmentActivity
                         try {
                             Http_Post.httppost(posturl1);
                             marker.remove();
+                            SharedPreferences b = getSharedPreferences("DATA",0);
+                            b.edit().putString("longi",""+nccu.longitude).apply();
+                            b.edit().putString("latit",""+nccu.latitude).apply();
+                            String pick_record = recordurl + a + "/"+action_pick +"/"+nccu.longitude+"/"+nccu.latitude+"/";
+                            Log.d("123showurl",pick_record);
+                            Http_Get.httpget(pick_record);
                         } catch (ProtocolException e) {
                             e.printStackTrace();
                         }
@@ -379,6 +421,17 @@ public class MapsActivity extends FragmentActivity
             Log.d("Not found","QQ");
             e.printStackTrace();
         }
+    }
+    //左下角按了返回後結束activity
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        if (keyCode == KeyEvent.KEYCODE_BACK )
+        {
+            this.finish();
+        }
+
+        return false;
+
     }
 
 }
