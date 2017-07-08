@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg">
+    <EditText
+        android:id="@+id/chat_content"
+        android:layout_width="280dp"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="10dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="發送"
+        android:id="@+id/enter_chat"
+        android:layout_toRightOf="@id/chat_content"
+        android:layout_toEndOf="@id/chat_content"
+        android:layout_alignBottom="@id/chat_content"
+        android:layout_marginBottom="30dp"
+        android:layout_marginRight="10dp" />
+    <ListView
+        android:id="@+id/show_chat"
+        android:layout_width="match_parent"
+        android:layout_height="330dp"
+        ></ListView>
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner"
+        android:layout_above="@id/enter_chat"
+        android:layout_marginBottom="20dp"
+        android:layout_alignEnd="@id/enter_chat"
+        android:layout_alignRight="@id/enter_chat"
+        android:layout_marginRight="10dp"
+      />
+    <TextView
+        android:textSize="15dp"
+        android:textColor="#000000"
+        android:id="@+id/chatamount_check_text"
+        android:text="歷史訊息數量 : "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/enter_chat"
+        android:layout_marginBottom="32dp"
+        android:layout_marginLeft="35dp"
+        android:layout_alignParentLeft="true"/>
+    <EditText
+        android:id="@+id/chatamount"
+        android:text="50"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/chatamount_check_text"
+        android:layout_above="@id/enter_chat"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="30dp"
+        android:inputType="number"
+        android:selectAllOnFocus="true"
+        />
+</RelativeLayout>

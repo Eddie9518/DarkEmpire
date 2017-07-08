@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="遊戲說明"
+        android:id="@+id/explanation"
+        android:background="@drawable/selector_edit"
+        android:textColor="#FFFFFF"
+        android:gravity="center_horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:textSize="25dp" />
+    <Button
+        android:text="查看超原力"
+        android:textSize="25dp"
+        android:layout_marginBottom="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/watch_dedicate"
+        android:background="@drawable/selector_edit"
+        android:textColor="#FFFFFF"
+        android:gravity="center_horizontal"
+        android:layout_above="@id/explanation"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="##是否開啟音效"
+        android:textColor="#000000"
+        android:id="@+id/sound_check"
+        android:layout_marginTop="50dp"
+        android:textSize="20dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="30dp" />
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="##是否開啟淨化和巡邏震動"-->
+        <!--android:textColor="#000000"-->
+        <!--android:textSize="20dp"-->
+        <!--android:id="@+id/vibrate_check"-->
+        <!--android:layout_below="@id/sound_check"-->
+        <!--android:paddingTop="20dp"-->
+        <!--android:layout_marginLeft="30dp" />-->
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/sound_switch"
+        android:layout_toRightOf="@id/sound_check"
+        android:layout_alignTop="@id/sound_check"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="20dp" />
+
+    <!--<Switch-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/vibrate_switch"-->
+        <!--android:layout_alignRight="@+id/sound_switch"-->
+        <!--android:layout_alignEnd="@+id/sound_switch"-->
+        <!--android:layout_alignTop="@+id/vibrate_check"-->
+        <!--android:layout_toRightOf="@id/vibrate_check"-->
+        <!--android:layout_marginTop="20dp" />-->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="登出"
+        android:textSize="20dp"
+        android:textColor="#000000"
+        android:paddingTop="20dp"
+        android:id="@+id/logout"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@id/sound_check"
+        android:layout_below="@id/sound_check"
+        android:clickable="true"
+        android:onClick="settings"/>
+</RelativeLayout>

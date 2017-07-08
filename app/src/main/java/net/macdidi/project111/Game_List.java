@@ -3,6 +3,8 @@ package net.macdidi.project111;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -45,17 +47,12 @@ public class Game_List extends AppCompatActivity {
             public void onItemClick(AdapterView arg0, View arg1, int arg2,
                                     long arg3) {
                 // TODO Auto-generated method stub
-//                ListView listView = (ListView) arg0;
-//                Toast.makeText(
-//                        Game_List.this,
-//                        "ID：" + arg3 +
-//                                "   選單文字："+ listView.getItemAtPosition(arg2).toString(),
-//                        Toast.LENGTH_LONG).show();
                 open_topic = place_list.get(arg2);
                 open_id = id_list.get(arg2);
                 Intent intent = new Intent();
                 intent.setClass(Game_List.this,Gaming.class);
                 startActivity(intent);
+                finish();
             }
         });
     }
@@ -83,7 +80,27 @@ public class Game_List extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+    //左上角按了返回後結束activity
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        // TODO Auto-generated method stub
+        if(item.getItemId() == android.R.id.home)
+        {
+           finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+    //左下角按了返回後結束activity
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        if (keyCode == KeyEvent.KEYCODE_BACK )
+        {
+            this.finish();
+        }
 
+        return false;
 
     }
 }

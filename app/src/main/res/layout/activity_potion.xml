@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:id="@+id/n_potion"
+        android:src="@drawable/nopotion"
+        android:layout_marginLeft="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="5dp"
+        android:clickable="true"/>
+
+    <ImageView
+        android:clickable="true"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:src="@drawable/redpotion"
+        android:id="@+id/r_potion"
+        android:layout_alignBottom="@id/n_potion"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="5dp" />
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:text="不用聖水"
+        android:textSize="15dp"
+        android:id="@+id/show_np"
+        android:layout_below="@id/n_potion"
+        android:layout_alignStart="@id/n_potion"
+        android:layout_alignLeft="@id/n_potion"
+        android:textAlignment="center" />
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:id="@+id/show_rp"
+        android:layout_alignStart="@id/r_potion"
+        android:layout_alignLeft="@id/r_potion"
+        android:layout_below="@id/r_potion"
+        android:text="紅藥水X18"
+        android:textSize="15dp"
+        android:textAlignment="center" />
+    <ImageView
+        android:clickable="true"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:src="@drawable/yellowpotion"
+        android:id="@+id/y_potion"
+        android:layout_below="@id/show_np"
+        android:layout_alignLeft="@id/n_potion"
+        android:layout_alignStart="@id/n_potion"/>
+    <ImageView
+        android:clickable="true"
+        android:id="@+id/b_potion"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:src="@drawable/bluepotion"
+        android:layout_below="@id/show_rp"
+        android:layout_alignLeft="@id/r_potion"
+        android:layout_alignStart="@id/r_potion"/>
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:text="黃藥水X5"
+        android:layout_below="@id/y_potion"
+        android:layout_alignStart="@id/y_potion"
+        android:layout_alignLeft="@id/y_potion"
+        android:textSize="15dp"
+        android:id="@+id/show_yp"
+        android:textAlignment="center" />
+    <TextView
+        android:id="@+id/show_bp"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:text="藍藥水X1"
+        android:layout_below="@id/b_potion"
+        android:layout_alignLeft="@id/b_potion"
+        android:layout_alignStart="@id/b_potion"
+        android:textSize="15dp"
+        android:textAlignment="center" />
+
+
+</RelativeLayout>

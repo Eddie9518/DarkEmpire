@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg">
+    <ImageView
+        android:id="@+id/b_redpotion"
+        android:src="@drawable/redpotion"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"/>
+    <ImageView
+        android:layout_toRightOf="@id/b_redpotion"
+        android:layout_toEndOf="@id/b_redpotion"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:id="@+id/b_yellowpotion"
+        android:src="@drawable/yellowpotion"
+        android:layout_width="100dp"
+        android:layout_height="150dp" />
+    <ImageView
+        android:layout_toRightOf="@id/b_yellowpotion"
+        android:layout_toEndOf="@id/b_yellowpotion"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:id="@+id/b_bluepotion"
+        android:src="@drawable/bluepotion"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:layout_marginRight="10dp"/>
+    <Button
+        android:id="@+id/buy_check"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_edit"
+        android:text="確認"
+        android:textColor="#FFFFFF"/>
+    <TextView
+        android:id="@+id/buy_content"
+        android:layout_above="@id/buy_check"
+        android:text="trytry"
+        android:textSize="20dp"
+        android:textColor="#0033CC"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center" />
+    <Button
+        android:id="@+id/r_add_button"
+        android:background="@drawable/add_button"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_below="@id/b_redpotion"/>
+    <Button
+        android:id="@+id/r_minus_button"
+        android:background="@drawable/minus_button"
+        android:layout_marginTop="50dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="5dp"
+        android:layout_below="@id/b_redpotion"
+        android:layout_toEndOf="@id/r_add_button"
+        android:layout_toRightOf="@id/r_add_button"/>
+    <Button
+        android:id="@+id/y_add_button"
+        android:background="@drawable/add_button"
+        android:layout_below="@id/b_yellowpotion"
+        android:layout_toRightOf="@id/r_minus_button"
+        android:layout_toEndOf="@id/r_minus_button"
+        android:layout_width="40dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="35dp"
+        android:layout_height="40dp" />
+    <Button
+        android:id="@+id/y_minus_button"
+        android:background="@drawable/minus_button"
+        android:layout_below="@id/b_yellowpotion"
+        android:layout_toRightOf="@id/y_add_button"
+        android:layout_toEndOf="@id/y_add_button"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="50dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp" />
+    <Button
+        android:id="@+id/b_add_button"
+        android:background="@drawable/add_button"
+        android:layout_below="@id/b_bluepotion"
+        android:layout_toRightOf="@id/y_minus_button"
+        android:layout_toEndOf="@id/y_minus_button"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="50dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp" />
+    <Button
+        android:id="@+id/b_minus_button"
+        android:background="@drawable/minus_button"
+        android:layout_below="@id/b_bluepotion"
+        android:layout_toRightOf="@id/b_add_button"
+        android:layout_toEndOf="@id/b_add_button"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="50dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="攻擊力1.5倍"
+        android:id="@+id/attack1"
+        android:layout_below="@+id/b_redpotion"
+        android:layout_alignLeft="@+id/r_add_button"
+        android:layout_alignStart="@+id/r_add_button"
+        android:layout_marginLeft="5dp"
+        android:textSize="15dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="攻擊力2.0倍"
+        android:id="@+id/attack2"
+        android:layout_below="@+id/b_yellowpotion"
+        android:layout_toRightOf="@id/attack1"
+        android:layout_marginLeft="38dp"
+        android:layout_centerHorizontal="true"
+        android:textSize="15dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="攻擊力4.0倍"
+        android:id="@+id/attack3"
+        android:layout_below="@+id/b_bluepotion"
+        android:layout_alignRight="@+id/b_minus_button"
+        android:layout_alignEnd="@+id/b_minus_button"
+        android:textSize="15dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="價格 : 50"
+        android:id="@+id/price1"
+        android:layout_below="@id/attack1"
+        android:layout_alignStart="@id/attack1"
+        android:layout_alignLeft="@id/attack1"
+        android:textSize="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp" />
+    <TextView
+        android:id="@+id/price2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="價格 : 200"
+        android:layout_below="@id/attack2"
+        android:layout_marginTop="5dp"
+        android:layout_alignStart="@id/attack2"
+        android:textSize="15dp"
+        android:layout_marginLeft="5dp"
+        android:layout_alignLeft="@id/attack2" />
+    <TextView
+        android:id="@+id/price3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="價格 : 500"
+        android:layout_below="@id/attack3"
+        android:layout_alignStart="@id/attack3"
+        android:layout_alignLeft="@id/attack3"
+        android:textSize="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp" />
+</RelativeLayout>
